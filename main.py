@@ -4,6 +4,8 @@ import random
 
 numbers_amount = [i for i in range(1, 10)]
 rnd = random.shuffle(numbers_amount)
+current_number = 1
+number_of_squares = 9
 print(numbers_amount)
 square_bgcolor = "#5e5e5e"
 text_color = "#909090"
@@ -18,8 +20,27 @@ text7 = str(numbers_amount[6])
 text8 = str(numbers_amount[7])
 text9 = str(numbers_amount[8])
 
+def on_click_event(text):
+    print("123")
+    print(text)
+    current_number = 1
+    # current_number, numbers_amount
+    if text == current_number:
+        current_number += 1
+        print(current_number)
+        # if current_number > number_of_squares:
+        #     reset_game()
+    # else:
+    #     container.bgcolor = wrong_number_color
+    #     page.update()
+    #     time.sleep(0.17)
+    #     # asyncio.sleep(1)  # Delay to show the wrong selection
+    #     container.bgcolor = square_bgcolor
+    #     page.update()
+
+
 with ui.row():
-    button1 = ui.button(text1, on_click=lambda: ui.notify('button was pressed'), color=square_bgcolor)
+    button1 = ui.button(text1, on_click=lambda: on_click_event(text1), color=square_bgcolor)
     button2 = ui.button(text2, on_click=lambda: ui.notify('button was pressed'), color=square_bgcolor)
     button3 = ui.button(text3, on_click=lambda: ui.notify('button was pressed'), color=square_bgcolor)
 with ui.row():
@@ -44,8 +65,11 @@ button8.style('height: 200px').classes('w-[200px]')
 button9.style('height: 200px').classes('w-[200px]')
 
 
+
+
+
 def handle_key(e: KeyEventArguments):
-    if e.key == 'f' and not e.action.repeat:
+    if e.key == 'h' and not e.action.repeat:
         if e.action.keydown:
             global text1, text2, text3, text4, text5, text6, text7, text8, text9
             rnd = random.shuffle(numbers_amount)
